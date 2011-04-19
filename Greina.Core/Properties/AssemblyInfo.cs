@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Greina.Tests")]
+[assembly: AssemblyTitle("Greina.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("Greina.Tests")]
+[assembly: AssemblyProduct("Greina.Core")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid("977aa24d-eb2e-4e5a-9865-9fcd563189fd")]
+[assembly: Guid("05c06282-6177-443f-8aac-84f31376b91e")]
 
 // Version information for an assembly consists of the following four values:
 //

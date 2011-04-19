@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5ACF998E-076E-4497-B94E-F0E936C7BA49}</ProjectGuid>
+    <ProjectGuid>{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Greina.Tests</RootNamespace>
-    <AssemblyName>Greina.Tests</AssemblyName>
+    <RootNamespace>Greina.Core</RootNamespace>
+    <AssemblyName>Greina.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,7 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greina.Tests", "Greina.Tests\Greina.Tests.csproj", "{5ACF998E-076E-4497-B94E-F0E936C7BA49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greina.Core", "Greina.Core\Greina.Core.csproj", "{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5ACF998E-076E-4497-B94E-F0E936C7BA49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ACF998E-076E-4497-B94E-F0E936C7BA49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ACF998E-076E-4497-B94E-F0E936C7BA49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ACF998E-076E-4497-B94E-F0E936C7BA49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
