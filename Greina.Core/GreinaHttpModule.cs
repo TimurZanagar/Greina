@@ -18,7 +18,19 @@ namespace Greina.Core
 
         static void ContextBeginRequest(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var application = (HttpApplication) sender;
+
+            string requestedUrl = application.Request.Url.ToString();
+
+            if (string.IsNullOrWhiteSpace(requestedUrl))
+            {
+                return;
+            }
+
+            string userAgent = application.Request.UserAgent;
+            string userHostAddress = application.Request.UserHostAddress;
+            string userHostName = application.Request.UserHostName;
+            string[] userLanguages = application.Request.UserLanguages;
         }
 
         /// <summary>
