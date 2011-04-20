@@ -4,11 +4,11 @@ namespace Greina.Core.Model
 {
     public class Request
     {
-        public Guid Id { get; set; }
-        public string RequestedUrl { get; set; }
-        public string UserAgent { get; set; }
-        public string UserHostAddress { get; set; }
-        public string UserHostName { get; set; }
-        public string[] UserLanguages { get; set; }
+        public virtual Guid Id { get; set; }
+        public virtual string RequestedUrl { get; set; }
+        public virtual string UserAgent { get; set; }
+        public virtual string UserHostAddress { get; set; }
+        public virtual string UserHostName { get; set; }
+        public virtual string[] UserLanguages { get; set; }
     }
 }

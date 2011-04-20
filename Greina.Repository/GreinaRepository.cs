@@ -1,5 +1,4 @@
-﻿using System;
-using Greina.Core;
+﻿using Greina.Core;
 using Greina.Core.Model;
 
 namespace Greina.Repository
@@ -10,7 +9,7 @@ namespace Greina.Repository
 
         public void Save(Request request)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion
