@@ -13,6 +13,11 @@ namespace Greina.Core
         /// <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application </param>
         public void Init(HttpApplication context)
         {
+            context.BeginRequest += ContextBeginRequest;
+        }
+
+        static void ContextBeginRequest(object sender, EventArgs e)
+        {
             throw new NotImplementedException();
         }
 

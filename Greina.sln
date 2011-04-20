@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greina.Tests", "Greina.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greina.Core", "Greina.Core\Greina.Core.csproj", "{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greina.Sample.Mvc3", "Greina.Sample.Mvc3\Greina.Sample.Mvc3.csproj", "{AC05465F-5E15-4DB4-A502-FC814618C69B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC05465F-5E15-4DB4-A502-FC814618C69B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC05465F-5E15-4DB4-A502-FC814618C69B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC05465F-5E15-4DB4-A502-FC814618C69B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC05465F-5E15-4DB4-A502-FC814618C69B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
