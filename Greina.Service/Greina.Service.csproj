@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CD167025-AFE4-4BA7-A18D-7E394F0C8CE7}</ProjectGuid>
+    <ProjectGuid>{C2E3B83D-EEDA-44D6-8DF1-9A19BFD0B387}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Greina.Repository</RootNamespace>
-    <AssemblyName>Greina.Repository</AssemblyName>
+    <RootNamespace>Greina.Service</RootNamespace>
+    <AssemblyName>Greina.Service</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,13 +47,17 @@
     <Compile Include="..\VersionAssemblyInfo.cs">
       <Link>Properties\VersionAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="GreinaRepository.cs" />
+    <Compile Include="GreinaHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Greina.Core\Greina.Core.csproj">
       <Project>{3AA65DB8-D32A-46E3-BB7E-F08F6904DF92}</Project>
       <Name>Greina.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Greina.Repository\Greina.Repository.csproj">
+      <Project>{CD167025-AFE4-4BA7-A18D-7E394F0C8CE7}</Project>
+      <Name>Greina.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
