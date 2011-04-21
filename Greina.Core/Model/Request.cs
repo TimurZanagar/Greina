@@ -5,6 +5,7 @@ namespace Greina.Core.Model
     public class Request
     {
         public virtual Guid Id { get; set; }
+        public virtual DateTime RequestedOn { get; set; }
         public virtual string RequestedUrl { get; set; }
         public virtual string UserAgent { get; set; }
         public virtual string UserHostAddress { get; set; }

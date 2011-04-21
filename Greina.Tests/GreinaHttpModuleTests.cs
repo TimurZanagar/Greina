@@ -8,7 +8,6 @@ namespace Greina.Tests
         [Test]
         public void CanGetHttpRequest()
         {
-
         }
     }
 }

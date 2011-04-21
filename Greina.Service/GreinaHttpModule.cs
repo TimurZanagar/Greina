@@ -19,7 +19,14 @@ namespace Greina.Service
             context.BeginRequest += ContextBeginRequest;
         }
 
-        static void ContextBeginRequest(object sender, EventArgs e)
+        /// <summary>
+        /// Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
+        /// </summary>
+        public void Dispose()
+        {
+        }
+
+        private static void ContextBeginRequest(object sender, EventArgs e)
         {
             var application = (HttpApplication) sender;
 
@@ -34,6 +41,7 @@ namespace Greina.Service
 
             var request = new Request
                               {
+                                  RequestedOn = DateTime.UtcNow,
                                   RequestedUrl = requestedUrl,
                                   UserAgent = application.Request.UserAgent,
                                   UserHostAddress = application.Request.UserHostAddress,
@@ -42,14 +50,6 @@ namespace Greina.Service
                               };
 
             greinaRepository.Save(request);
-        }
-
-        /// <summary>
-        /// Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
-        /// </summary>
-        public void Dispose()
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
