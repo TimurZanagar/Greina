@@ -62,7 +62,10 @@
       <Link>Properties\VersionAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="GreinaRepository.cs" />
+    <Compile Include="Mappings\BrowserClassMap.cs" />
+    <Compile Include="Mappings\EntityBaseClassMap.cs" />
     <Compile Include="Mappings\RequestClassMap.cs" />
+    <Compile Include="Mappings\VisitorClassMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionFactoryService.cs" />
   </ItemGroup>

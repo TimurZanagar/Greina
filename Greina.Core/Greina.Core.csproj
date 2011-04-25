@@ -47,7 +47,10 @@
       <Link>Properties\VersionAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="IGreinaRepository.cs" />
+    <Compile Include="Model\Browser.cs" />
+    <Compile Include="Model\EntityBase.cs" />
     <Compile Include="Model\Request.cs" />
+    <Compile Include="Model\Visitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

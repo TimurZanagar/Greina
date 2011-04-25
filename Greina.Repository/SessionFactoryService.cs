@@ -25,14 +25,14 @@ namespace Greina.Repository
                                   .FormatSql())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RequestClassMap>())
                     .ExposeConfiguration(cfg =>
-                    {
-                        cfg.Properties.Add("hibernate.hbm2ddl.auto", "validate");
-                        cfg.BuildMappings();
-                        //new SchemaExport(cfg)
-                        //    .SetOutputFile(@"C:\Users\TZ\Desktop\Greina.sql")
-                        //    .Execute(false, false, false);
-                        new SchemaUpdate(cfg).Execute(true, true);
-                    });
+                                             {
+                                                 cfg.Properties.Add("hibernate.hbm2ddl.auto", "validate");
+                                                 cfg.BuildMappings();
+                                                 //new SchemaExport(cfg)
+                                                 //    .SetOutputFile(@"C:\Users\TZ\Desktop\Greina.sql")
+                                                 //    .Execute(false, false, false);
+                                                 new SchemaUpdate(cfg).Execute(true, true);
+                                             });
         }
     }
 }

@@ -1,15 +1,12 @@
-﻿using System;
-
-namespace Greina.Core.Model
+﻿namespace Greina.Core.Model
 {
-    public class Request
+    public class Request : EntityBase
     {
-        public virtual Guid Id { get; set; }
-        public virtual DateTime RequestedOn { get; set; }
         public virtual string RequestedUrl { get; set; }
         public virtual string UserAgent { get; set; }
         public virtual string UserHostAddress { get; set; }
         public virtual string UserHostName { get; set; }
         public virtual string[] UserLanguages { get; set; }
+        public virtual string UrlRefferer { get; set; }
     }
 }

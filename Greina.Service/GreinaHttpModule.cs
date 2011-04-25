@@ -39,17 +39,60 @@ namespace Greina.Service
 
             IGreinaRepository greinaRepository = new GreinaRepository();
 
+            Guid visitorId = GetVisitorId(application);
+
+            if (!greinaRepository.VisitorExistsById(visitorId))
+            {
+                greinaRepository.CreateVisitor(visitorId);
+            }
+            else
+            {
+                Visitor visitor = greinaRepository.GetVisitorById(visitorId);
+            }
+
             var request = new Request
                               {
-                                  RequestedOn = DateTime.UtcNow,
+                                  CreatedOn = DateTime.UtcNow,
                                   RequestedUrl = requestedUrl,
                                   UserAgent = application.Request.UserAgent,
                                   UserHostAddress = application.Request.UserHostAddress,
                                   UserHostName = application.Request.UserHostName,
-                                  UserLanguages = application.Request.UserLanguages
+                                  UserLanguages = application.Request.UserLanguages,
+                                  UrlRefferer =
+                                      application.Request.UrlReferrer != null
+                                          ? application.Request.UrlReferrer.ToString()
+                                          : string.Empty
                               };
 
             greinaRepository.Save(request);
+        }
+
+        private static Guid GetVisitorId(HttpApplication application)
+        {
+            // TODO: Set Application Name from web.config
+            string applicationName = "www.greina.de";
+            string cookieName = string.Format("Greina_{0}", applicationName);
+
+            Guid visitorId;
+
+            HttpCookie cookie = application.Request.Cookies[cookieName];
+
+            if (cookie != null)
+            {
+                visitorId = Guid.Parse(cookie["VisitorId"]);
+            }
+            else
+            {
+                cookie = new HttpCookie(cookieName);
+
+                visitorId = Guid.NewGuid();
+                cookie["VisitorId"] = visitorId.ToString();
+                cookie.Expires = DateTime.MaxValue;
+
+                application.Response.Cookies.Add(cookie);
+            }
+
+            return visitorId;
         }
 
         #endregion
