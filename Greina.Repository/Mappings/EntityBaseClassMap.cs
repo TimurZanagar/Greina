@@ -7,8 +7,9 @@ namespace Greina.Repository.Mappings
     {
         public EntityBaseClassMap()
         {
-            Id(x => x.Id);
+            Id(x => x.Id).GeneratedBy.Assigned();
 
+            Version(x => x.Version);
             Map(x => x.CreatedOn);
         }
     }

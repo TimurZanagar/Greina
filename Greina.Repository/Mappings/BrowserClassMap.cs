@@ -1,13 +1,8 @@
-﻿using FluentNHibernate.Mapping;
-using Greina.Core.Model;
+﻿using Greina.Core.Model;
 
 namespace Greina.Repository.Mappings
 {
-    public sealed class BrowserClassMap : ClassMap<Browser>
+    public sealed class BrowserClassMap : EntityBaseClassMap<Browser>
     {
-        public BrowserClassMap()
-        {
-            Id(x => x.Id);
-        }
     }
 }

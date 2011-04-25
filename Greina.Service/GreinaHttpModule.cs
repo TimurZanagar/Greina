@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
-using Greina.Core;
 using Greina.Core.Model;
 using Greina.Repository;
+using NHibernate;
+using NHibernate.Linq;
 
 namespace Greina.Service
 {
@@ -37,38 +40,6 @@ namespace Greina.Service
                 return;
             }
 
-            IGreinaRepository greinaRepository = new GreinaRepository();
-
-            Guid visitorId = GetVisitorId(application);
-
-            if (!greinaRepository.VisitorExistsById(visitorId))
-            {
-                greinaRepository.CreateVisitor(visitorId);
-            }
-            else
-            {
-                Visitor visitor = greinaRepository.GetVisitorById(visitorId);
-            }
-
-            var request = new Request
-                              {
-                                  CreatedOn = DateTime.UtcNow,
-                                  RequestedUrl = requestedUrl,
-                                  UserAgent = application.Request.UserAgent,
-                                  UserHostAddress = application.Request.UserHostAddress,
-                                  UserHostName = application.Request.UserHostName,
-                                  UserLanguages = application.Request.UserLanguages,
-                                  UrlRefferer =
-                                      application.Request.UrlReferrer != null
-                                          ? application.Request.UrlReferrer.ToString()
-                                          : string.Empty
-                              };
-
-            greinaRepository.Save(request);
-        }
-
-        private static Guid GetVisitorId(HttpApplication application)
-        {
             // TODO: Set Application Name from web.config
             string applicationName = "www.greina.de";
             string cookieName = string.Format("Greina_{0}", applicationName);
@@ -80,6 +51,53 @@ namespace Greina.Service
             if (cookie != null)
             {
                 visitorId = Guid.Parse(cookie["VisitorId"]);
+
+                using (ISession session = SessionFactoryService.SessionFactory.OpenSession())
+                {
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        try
+                        {
+                            Guid requestId = Guid.NewGuid();
+
+                            var request = new Request
+                                              {
+                                                  Id = requestId,
+                                                  CreatedOn = DateTime.UtcNow,
+                                                  RequestedUrl = requestedUrl,
+                                                  UserAgent = application.Request.UserAgent,
+                                                  UserHostAddress = application.Request.UserHostAddress,
+                                                  UserHostName = application.Request.UserHostName,
+                                                  UserLanguages = application.Request.UserLanguages,
+                                                  UrlRefferer =
+                                                      application.Request.UrlReferrer != null
+                                                          ? application.Request.UrlReferrer.ToString()
+                                                          : string.Empty
+                                              };
+
+                            Visitor visitor =
+                                (from x in session.Query<Visitor>() where x.Id == visitorId select x).FirstOrDefault();
+
+                            if (visitor.Requests == null)
+                            {
+                                visitor.Requests = new List<Request>();
+                            }
+
+
+                            session.SaveOrUpdate(request);
+                            visitor.Requests.Add(session.Get<Request>(requestId));
+                            session.SaveOrUpdate(visitor);
+
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            application.Request.Cookies.Remove(applicationName);
+                            throw;
+                        }
+                    }
+                }
             }
             else
             {
@@ -90,9 +108,52 @@ namespace Greina.Service
                 cookie.Expires = DateTime.MaxValue;
 
                 application.Response.Cookies.Add(cookie);
-            }
 
-            return visitorId;
+                using (ISession session = SessionFactoryService.SessionFactory.OpenSession())
+                {
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        try
+                        {
+                            Guid requestId = Guid.NewGuid();
+
+                            var request = new Request
+                                              {
+                                                  Id = requestId,
+                                                  CreatedOn = DateTime.UtcNow,
+                                                  RequestedUrl = requestedUrl,
+                                                  UserAgent = application.Request.UserAgent,
+                                                  UserHostAddress = application.Request.UserHostAddress,
+                                                  UserHostName = application.Request.UserHostName,
+                                                  UserLanguages = application.Request.UserLanguages,
+                                                  UrlRefferer =
+                                                      application.Request.UrlReferrer != null
+                                                          ? application.Request.UrlReferrer.ToString()
+                                                          : string.Empty
+                                              };
+
+                            var visitor = new Visitor {Id = visitorId, CreatedOn = DateTime.UtcNow};
+
+                            if (visitor.Requests == null)
+                            {
+                                visitor.Requests = new List<Request>();
+                            }
+
+                            session.SaveOrUpdate(request);
+                            visitor.Requests.Add(session.Get<Request>(requestId));
+                            session.SaveOrUpdate(visitor);
+
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            application.Request.Cookies.Remove(applicationName);
+                            throw;
+                        }
+                    }
+                }
+            }
         }
 
         #endregion

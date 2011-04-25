@@ -1,14 +1,11 @@
-﻿using FluentNHibernate.Mapping;
-using Greina.Core.Model;
+﻿using Greina.Core.Model;
 
 namespace Greina.Repository.Mappings
 {
-    public sealed class VisitorClassMap : ClassMap<Visitor>
+    public sealed class VisitorClassMap : EntityBaseClassMap<Visitor>
     {
         public VisitorClassMap()
         {
-            Id(x => x.Id);
-
             HasMany(x => x.Requests).KeyColumn("VisitorId");
         }
     }
